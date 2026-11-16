@@ -1,0 +1,146 @@
+/* Interface 10 pieds : tailles en vw/vh pour s'adapter au 720p comme au 1080p */
+:root {
+  --bg: #0b0d12;
+  --bg-2: #141824;
+  --text: #f2f4f8;
+  --muted: #8a93a6;
+  --focus: #ffffff;
+  --tile-w: 15vw;
+  --tile-h: 8.6vw;
+  --gap: 1.6vw;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(120% 90% at 20% 0%, #1c2236 0%, var(--bg) 60%);
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  cursor: none;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 4vh 5vw 2vh;
+}
+
+.greeting {
+  font-size: 2.6vw;
+  font-weight: 600;
+}
+
+.date {
+  font-size: 1.3vw;
+  color: var(--muted);
+  margin-top: 0.4vh;
+  text-transform: capitalize;
+}
+
+.clock {
+  font-size: 4.2vw;
+  font-weight: 300;
+  letter-spacing: 0.1vw;
+  font-variant-numeric: tabular-nums;
+}
+
+.rows {
+  height: 74vh;
+  overflow: hidden;
+  padding: 0 5vw;
+}
+
+.rows-inner {
+  transition: transform 0.25s ease;
+}
+
+.row {
+  margin-bottom: 4.5vh;
+}
+
+.row-title {
+  font-size: 1.4vw;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 1.6vh;
+}
+
+.row-tiles {
+  display: flex;
+  transition: transform 0.25s ease;
+}
+
+.tile {
+  flex: 0 0 auto;
+  width: var(--tile-w);
+  height: var(--tile-h);
+  margin-right: var(--gap);
+  border-radius: 0.8vw;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1vw 1.1vw;
+  transform: scale(0.94);
+  opacity: 0.78;
+  transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: 0 0.6vw 1.4vw rgba(0, 0, 0, 0.35);
+}
+
+.tile::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 45%);
+  pointer-events: none;
+}
+
+.tile.focused {
+  transform: scale(1.06);
+  opacity: 1;
+  box-shadow: 0 0 0 0.25vw var(--focus), 0 1.2vw 2.4vw rgba(0, 0, 0, 0.55);
+}
+
+.tile-icon {
+  font-size: 2.6vw;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tile-name {
+  font-size: 1.15vw;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hint {
+  position: fixed;
+  bottom: 3vh;
+  left: 5vw;
+  font-size: 1vw;
+  color: var(--muted);
+}
+
+.hint span {
+  margin-right: 2.4vw;
+}
+
+.hint b {
+  color: var(--text);
+  font-weight: 600;
+}
